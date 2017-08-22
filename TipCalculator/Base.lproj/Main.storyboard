@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -189,12 +188,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="billDesc" destination="0qE-B5-0wM" id="wIY-in-07T"/>
                         <outlet property="billField" destination="CZA-nj-GI2" id="dfP-y2-YgC"/>
+                        <outlet property="eachDesc" destination="afg-He-22U" id="4nd-bc-eBj"/>
+                        <outlet property="numDesc" destination="HNd-kp-C7K" id="dvQ-wU-2f2"/>
                         <outlet property="numberPeople" destination="4xY-Hb-Y4o" id="Fuj-zQ-AiY"/>
                         <outlet property="perPerson" destination="jfo-AY-7xb" id="zNa-mL-OrQ"/>
+                        <outlet property="taxDesc" destination="seH-eq-84W" id="xET-97-QgX"/>
                         <outlet property="taxLabel" destination="rRf-Wr-FBY" id="by6-oO-4hJ"/>
                         <outlet property="tipControl" destination="xEp-nJ-OcV" id="Pqj-Zj-Se1"/>
+                        <outlet property="tipDesc" destination="G8f-xY-Huh" id="gLC-GE-TQg"/>
                         <outlet property="tipLabel" destination="F9P-DA-XCg" id="Gg7-Wn-Bau"/>
+                        <outlet property="totalDesc" destination="gZC-LL-DOV" id="xrQ-kI-dud"/>
                         <outlet property="totalLabel" destination="rHV-jP-hGg" id="z55-UI-VrE"/>
                     </connections>
                 </viewController>
@@ -220,16 +225,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="pfV-D0-PL4">
-                                <rect key="frame" x="31" y="94" width="313" height="30"/>
+                                <rect key="frame" x="15" y="94" width="345" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zH0-0L-Fkp">
-                                        <rect key="frame" x="0.0" y="0.0" width="136.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="152.5" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="9.25" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wjP-cB-jnf">
-                                        <rect key="frame" x="176.5" y="0.0" width="136.5" height="30"/>
+                                        <rect key="frame" x="192.5" y="0.0" width="152.5" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -239,21 +244,50 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AoW-4P-F3b">
+                                <rect key="frame" x="15" y="139" width="345" height="29"/>
+                                <segments>
+                                    <segment title="10%"/>
+                                    <segment title="15%"/>
+                                    <segment title="20%"/>
+                                </segments>
+                                <connections>
+                                    <action selector="selectTipDefault:" destination="X7E-oZ-ck9" eventType="valueChanged" id="IGQ-1n-elG"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="N0C-2j-5c4">
+                                <rect key="frame" x="15" y="182" width="345" height="29"/>
+                                <segments>
+                                    <segment title="Light"/>
+                                    <segment title="Dark"/>
+                                </segments>
+                                <connections>
+                                    <action selector="selectTheme:" destination="X7E-oZ-ck9" eventType="valueChanged" id="6Cb-cT-h51"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="pfV-D0-PL4" secondAttribute="trailing" constant="15" id="GZG-1L-qu2"/>
-                            <constraint firstItem="pfV-D0-PL4" firstAttribute="leading" secondItem="sfX-oN-CPs" secondAttribute="leadingMargin" constant="15" id="T4R-kL-mrn"/>
-                            <constraint firstItem="pfV-D0-PL4" firstAttribute="top" secondItem="RIw-3q-ehr" secondAttribute="bottom" constant="30" id="dar-1G-X5u"/>
+                            <constraint firstItem="AoW-4P-F3b" firstAttribute="top" secondItem="pfV-D0-PL4" secondAttribute="bottom" constant="15" id="1oR-yW-vYR"/>
+                            <constraint firstAttribute="trailing" secondItem="N0C-2j-5c4" secondAttribute="trailing" constant="15" id="8Py-mG-kXt"/>
+                            <constraint firstItem="AoW-4P-F3b" firstAttribute="leading" secondItem="sfX-oN-CPs" secondAttribute="leading" constant="15" id="BBd-9R-w2t"/>
+                            <constraint firstItem="pfV-D0-PL4" firstAttribute="top" secondItem="RIw-3q-ehr" secondAttribute="bottom" constant="30" id="EJY-0I-y1O"/>
+                            <constraint firstAttribute="trailing" secondItem="pfV-D0-PL4" secondAttribute="trailing" constant="15" id="YKW-td-p7E"/>
+                            <constraint firstItem="N0C-2j-5c4" firstAttribute="top" secondItem="AoW-4P-F3b" secondAttribute="bottom" constant="15" id="bTh-NP-pMw"/>
+                            <constraint firstItem="N0C-2j-5c4" firstAttribute="leading" secondItem="sfX-oN-CPs" secondAttribute="leading" constant="15" id="dbx-FD-whf"/>
+                            <constraint firstAttribute="trailing" secondItem="AoW-4P-F3b" secondAttribute="trailing" constant="15" id="j6Y-DU-kyv"/>
+                            <constraint firstItem="pfV-D0-PL4" firstAttribute="leading" secondItem="sfX-oN-CPs" secondAttribute="leading" constant="15" id="nxU-2g-lMK"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="taxLabel" destination="wjP-cB-jnf" id="wCc-3n-12W"/>
+                        <outlet property="themeDefault" destination="N0C-2j-5c4" id="Ikd-d1-1Uj"/>
+                        <outlet property="tipDefault" destination="AoW-4P-F3b" id="puh-pu-LYU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUY-NU-HJc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1372" y="134"/>
+            <point key="canvasLocation" x="1372" y="133.5832083958021"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CYi-uY-SqZ">
